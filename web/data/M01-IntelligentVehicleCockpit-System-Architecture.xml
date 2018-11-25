@@ -1,0 +1,85 @@
+<structure>
+    <definition>
+        <system >Android 9</system>
+        <scopes>
+            <!-- 媒体相关 -->
+            <scope name="Media" />
+            <!-- 用户相关 -->
+            <scope name="User" />
+            <!-- 行车相关 -->
+            <scope name="Driving" />
+            <!-- 系统运行 -->
+            <scope name="System" />
+            <!-- 车辆安全 -->
+            <scope name="Security" />
+            <!-- 车辆监控 -->
+            <scope name="Monitor" />
+        </scopes>
+        <layers>
+            <layer name="application" />
+            <layer name="services" />
+            <layer name="framework" />
+            <layer name="HAL" />
+            <layer name="hardware" />
+        </layers>
+
+        <domains>
+            <domain id="HMI" name="Human, Machine Interface" />
+            <domain id="AR" name="Android runtime" />
+            <domain id="ACS" name="Automotive[Car Service]" />
+            <domain id="CVS" name="CHJ Vehicle Service" />
+        </domains>
+        <venders>
+            <vender name="Android" />
+            <vender name="Google" />
+            <vender name="CHJ" />
+        </venders>
+        <!-- 列出所有架构中描述的组件 -->
+        <components>
+
+            <component name="Launcher" layer="application" domain="HMI" vender="CHJ" />
+            <component name="SystemUI" layer="application" domain="HMI" vender="CHJ" />
+            <component name="UserCenter" layer='application' domain="HMI" vender="CHJ" />
+
+            <component name="BaiduNavigator" layer="application" doamin="HMI" vender="CHJ" />
+            <component name="GaodeNavigator" layer='application' domain="HMI" vender="CHJ" />
+
+
+            <component name="Settings" layer="application" domain="HMI" vender="CHJ" />
+            <component name="360 Surround View" layer='application' domain="HMI" vender="CHJ" />
+
+            <!-- Application: Media Scope -->
+            <component name="MusicPlayer" layer="application" domain="HMI" vender="CHJ" />
+            <component name="FM" layer="application" domain="HMI" vender="CHJ" />
+            <component name="IQIYIPlayer" layer="application" domain="HMI" vender="CHJ" />
+            <component name="FeedStream" layer="application" domain="HMI" vender="CHJ" />
+            <!-- Application: Media Scope -->
+
+            <component name="CHJAccount" layer="services" domain="CVS" vender="CHJ" />
+            <component name="CHJAuthority" layer="services" domain="CVS" vender="CHJ" />
+            <component name="NavigateService" layer="services" domain="CVS" vender="CHJ" />
+
+            <component name="AuthorityManager" layer="framework" domain="AR" vender="CHJ" />
+            <component name="AccountManager" layer="framework" domain="AR" vender="Android" />
+            <component name="PackageManager" layer="framework" domain="AR" vender="Android" />
+            <component name="ActivityManager" layer="framework" domain='AR' vender="Android" />
+
+            <component name="Iot-Service" layer="services" domain="CVS" vender="CHJ" />
+            <component name="RemoteControl" layer="services" domain="CVS" vender="CHJ" />
+        </components>
+    </definition>
+    <graph>
+        <relations>
+            <relation type="implement" from="CHJAccount" to="AccountManager" />
+            <relation type="use" from="UserCenter" to="AccountManager" />
+            <relation type="use" from="Iot-Service" to="AccountmANAGER" />
+            <relation type="use" from="AuthorityManager" to="" />
+
+            <relation type="implement" from="CHJAuthority" to="AuthorityManager" />
+            <relation type="use" from="PackageManager" to="AuthorityManager" />
+            <relation type="use" from="ActivityManager" to="AuthorityManager" />
+            <relation type="use" from="Launcher" to="AuthorityManager" />
+        </relations>
+
+    </graph>
+</structure>
